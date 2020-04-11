@@ -140,7 +140,6 @@
 # ifdef __DECC
 #  ifndef __DECC_VER	/* buggy early versions want widened prototypes */
 #   define NOTSTDC	/* except when typedefs are involved		*/
-#   define USE_VARARGS
 #  else
 #   define NHSTDC
 #   define USE_STDARG
@@ -152,7 +151,6 @@
 #  ifdef VAXC	/* must use CC/DEFINE=ANCIENT_VAXC for vaxc v2.2 or older */
 #   ifdef ANCIENT_VAXC	/* vaxc v2.2 and earlier [lots of warnings to come] */
 #    define KR1ED	/* simulate defined() */
-#    define USE_VARARGS
 #   else		/* vaxc v2.3,2.4,or 3.x, or decc in vaxc mode */
 #     if defined(USE_PROTOTYPES) /* this breaks 2.2 (*forces* use of ANCIENT)*/
 #      define __STDC__ 0 /* vaxc is not yet ANSI compliant, but close enough */
@@ -164,15 +162,6 @@
 #   endif
 #  endif /*VAXC*/
 # endif /*__DECC*/
-# ifdef VERYOLD_VMS	/* v4.5 or earlier; no longer available for testing */
-#  define USE_OLDARGS	/* <varargs.h> is there, vprintf & vsprintf aren't */
-#  ifdef USE_VARARGS
-#   undef USE_VARARGS
-#  endif
-#  ifdef USE_STDARG
-#   undef USE_STDARG
-#  endif
-# endif
 #endif /*VMS*/
 
 #ifdef vax
