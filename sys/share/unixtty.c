@@ -437,14 +437,13 @@ init_linux_cons()
 /* fatal error */
 /*VARARGS1*/
 void
-error VA_DECL(const char *,s)
-	VA_START(s);
-	VA_INIT(s, const char *);
+error(const char * s, ...) { va_list the_args;
+	va_start(the_args, s);
 	if(settty_needed)
 		settty((char *)0);
-	Vprintf(s,VA_ARGS);
+	Vprintf(s,the_args);
 	(void) putchar('\n');
-	VA_END();
+	va_end(the_args);
 	exit(EXIT_FAILURE);
 }
 #endif /* !__begui__ */
