@@ -44,8 +44,6 @@
 #include <stdarg.h>
 #endif /* NEED_VARARGS */
 
-#if defined(NHSTDC) || defined(MSDOS) || defined(MAC) || defined(ULTRIX_PROTO) || defined(__BEOS__)
-
 /*
  * Used for robust ANSI parameter forward declarations:
  * int VDECL(sprintf, (char *, const char *, ...));
@@ -75,48 +73,7 @@
  */
 /* And IBM CSet/2.  The redeclaration of free hoses the compile. */
 #  define genericptr_t	genericptr
-# else
-#  if !defined(NHSTDC) && !defined(MAC)
-#   define const
-#   define signed
-#   define volatile
-#  endif
 # endif
-
-/*
- * Suppress `const' if necessary and not handled elsewhere.
- * Don't use `#if defined(xxx) && !defined(const)'
- * because some compilers choke on `defined(const)'.
- * This has been observed with Lattice, MPW, and High C.
- */
-# if (defined(ULTRIX_PROTO) && !defined(NHSTDC)) || defined(apollo)
-	/* the system header files don't use `const' properly */
-#  ifndef const
-#   define const
-#  endif
-# endif
-
-#else /* NHSTDC */	/* a "traditional" C  compiler */
-
-# define NDECL(f)	f()
-# define FDECL(f,p)	f()
-# define VDECL(f,p)	f()
-
-# if defined(AMIGA) || defined(HPUX) || defined(POSIX_TYPES) || defined(__DECC) || defined(__BORLANDC__)
-#  define genericptr	void *
-# endif
-# ifndef genericptr
-#  define genericptr	char *
-# endif
-
-/*
- * Traditional C compilers don't have "signed", "const", or "volatile".
- */
-# define signed
-# define const
-# define volatile
-
-#endif /* NHSTDC */
 
 
 #ifndef genericptr_t
@@ -159,29 +116,6 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
 # if defined(NHSTDC) || defined(ULTRIX_PROTO) || defined(THINK_C)
 # define WIDENED_PROTOTYPES
 # endif
-#endif
-
-#if 0
-/* The problem below is still the case through 4.0.5F, but the suggested
- * compiler flags in the Makefiles suppress the nasty messages, so we don't
- * need to be quite so drastic.
- */
-#if defined(__sgi) && !defined(__GNUC__)
-/*
- * As of IRIX 4.0.1, /bin/cc claims to be an ANSI compiler, but it thinks
- * it's impossible for a prototype to match an old-style definition with
- * unwidened argument types.  Thus, we have to turn off all NetHack
- * prototypes, and avoid declaring several system functions, since the system
- * include files have prototypes and the compiler also complains that
- * prototyped and unprototyped declarations don't match.
- */
-# undef NDECL
-# undef FDECL
-# undef VDECL
-# define NDECL(f)	f()
-# define FDECL(f,p)	f()
-# define VDECL(f,p)	f()
-#endif
 #endif
 
 
