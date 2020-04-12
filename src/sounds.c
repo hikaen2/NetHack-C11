@@ -13,7 +13,7 @@
 #ifdef OVLB
 
 static int FDECL(domonnoise,(struct monst *));
-static int NDECL(dochat);
+static int dochat(void);
 
 #endif /* OVLB */
 

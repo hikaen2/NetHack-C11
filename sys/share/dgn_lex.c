@@ -158,7 +158,7 @@ static int yy_did_buffer_switch_on_eof;
 void FDECL(yyrestart, (FILE *));
 
 void FDECL(yy_switch_to_buffer, (YY_BUFFER_STATE));
-void NDECL(yy_load_buffer_state);
+void yy_load_buffer_state(void);
 YY_BUFFER_STATE FDECL(yy_create_buffer, (FILE *,int));
 void FDECL(yy_delete_buffer, (YY_BUFFER_STATE));
 void FDECL(yy_init_buffer, (YY_BUFFER_STATE,FILE *));
@@ -193,9 +193,9 @@ typedef int yy_state_type;
 extern char *yytext;
 #define yytext_ptr yytext
 
-static yy_state_type NDECL(yy_get_previous_state);
+static yy_state_type yy_get_previous_state(void);
 static yy_state_type FDECL(yy_try_NUL_trans, (yy_state_type));
-static int NDECL(yy_get_next_buffer);
+static int yy_get_next_buffer(void);
 static void FDECL(yy_fatal_error, (const char *));
 
 /* Done after the current pattern has been matched and before the
@@ -423,10 +423,10 @@ char *yytext;
  */
 #if !defined(FLEX_SCANNER) && !defined(FLEXHACK_SCANNER)
 int FDECL(yyback, (int *,int));
-int NDECL(yylook);
-int NDECL(yyinput);
-int NDECL(yywrap);
-int NDECL(yylex);
+int yylook(void);
+int yyinput(void);
+int yywrap(void);
+int yylex(void);
 	/* Traditional lexes let yyunput() and yyoutput() default to int;
 	 * newer ones may declare them as void since they don't return
 	 * values.  For even more fun, the lex supplied as part of the
@@ -488,7 +488,7 @@ int line_number = 1;
  */
 
 #ifndef YY_SKIP_YYWRAP
-extern int NDECL(yywrap);
+extern int yywrap(void);
 #endif
 
 #ifndef YY_NO_UNPUT
@@ -500,7 +500,7 @@ static void FDECL(yy_flex_strncpy, (char *,const char *,int));
 #endif
 
 #ifndef YY_NO_INPUT
-static int NDECL(input);
+static int input(void);
 #endif
 
 /* Amount of stuff to slurp up with each read. */
@@ -575,7 +575,7 @@ static int NDECL(input);
 				(yytext[yyleng - 1] == '\n'); \
 	YY_USER_ACTION
 
-int NDECL(yylex);
+int yylex(void);
 int yylex()
 	{
 	register yy_state_type yy_current_state;

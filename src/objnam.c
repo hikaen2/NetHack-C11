@@ -13,7 +13,7 @@ STATIC_DCL char *FDECL(strprepend,(char *,const char *));
 #ifdef OVLB
 static boolean FDECL(wishymatch, (const char *,const char *,BOOLEAN_P));
 #endif
-static char *NDECL(nextobuf);
+static char *nextobuf(void);
 static void FDECL(add_erosion_words, (struct obj *, char *));
 
 struct Jitem {

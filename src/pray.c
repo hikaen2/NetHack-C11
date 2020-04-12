@@ -5,14 +5,14 @@
 #include "hack.h"
 #include "epri.h"
 
-STATIC_PTR int NDECL(prayer_done);
-STATIC_DCL struct obj *NDECL(worst_cursed_item);
-STATIC_DCL int NDECL(in_trouble);
+STATIC_PTR int prayer_done(void);
+STATIC_DCL struct obj *worst_cursed_item(void);
+STATIC_DCL int in_trouble(void);
 STATIC_DCL void FDECL(fix_worst_trouble,(int));
 STATIC_DCL void FDECL(angrygods,(ALIGNTYP_P));
 STATIC_DCL void FDECL(at_your_feet, (const char *));
 #ifdef ELBERETH
-STATIC_DCL void NDECL(gcrownu);
+STATIC_DCL void gcrownu(void);
 #endif	/*ELBERETH*/
 STATIC_DCL void FDECL(pleased,(ALIGNTYP_P));
 STATIC_DCL void FDECL(godvoice,(ALIGNTYP_P,const char*));
