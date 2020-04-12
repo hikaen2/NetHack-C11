@@ -126,17 +126,4 @@ typedef genericptr genericptr_t;	/* (void *) or (char *) */
 #endif
 
 
-/*
- * Allow gcc2 to check parameters of printf-like calls with -Wformat;
- * append this to a prototype declaration (see pline() in extern.h).
- */
-#ifdef __GNUC__
-# if __GNUC__ >= 2
-#define PRINTF_F(f,v) __attribute__ ((format (printf, f, v)))
-# endif
-#endif
-#ifndef PRINTF_F
-#define PRINTF_F(f,v)
-#endif
-
 #endif /* TRADSTDC_H */
