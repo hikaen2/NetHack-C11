@@ -35,11 +35,11 @@ static char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
 #include "date.h"
 #include "dgn_file.h"
 
-void FDECL(yyerror, (const char *));
-void FDECL(yywarning, (const char *));
+void yyerror(const char *);
+void yywarning(const char *);
 int yylex(void);
 int yyparse(void);
-int FDECL(getchain, (char *));
+int getchain(char *);
 int check_dungeon(void);
 int check_branch(void);
 int check_level(void);
