@@ -549,7 +549,7 @@ E void FDECL(done_intr, (int));
 #endif
 E void FDECL(done_in_by, (struct monst *));
 #endif /* !MAKEDEFS_C && !LEV_LEX_C */
-E void VDECL(panic, (const char *,...));
+E void panic(const char *,...);
 #if !defined(MAKEDEFS_C) && !defined(LEV_LEX_C)
 E void FDECL(done, (int));
 E void FDECL(container_contents, (struct obj *,BOOLEAN_P,BOOLEAN_P));
@@ -896,7 +896,7 @@ E int NDECL(SanePositions);
 /* ### mttymain.c ### */
 
 E void FDECL(getreturn, (char *));
-E void VDECL(msmsg, (const char *,...));
+E void msmsg(const char *,...);
 E void NDECL(gettty);
 E void NDECL(setftty);
 E void FDECL(settty, (const char *));
@@ -1439,7 +1439,7 @@ E void NDECL(gameDiskPrompt);
 E void FDECL(append_slash, (char *));
 E void FDECL(getreturn, (const char *));
 # ifndef AMIGA
-E void VDECL(msmsg, (const char *,...));
+E void msmsg(const char *,...);
 # endif
 E FILE *FDECL(fopenp, (const char *,const char *));
 #endif /* MICRO || WIN32 */
@@ -1450,7 +1450,7 @@ E FILE *FDECL(fopenp, (const char *,const char *));
 E void NDECL(gettty);
 E void FDECL(settty, (const char *));
 E void NDECL(setftty);
-E void VDECL(error, (const char *,...));
+E void error(const char *,...);
 #if defined(TIMED_DELAY) && defined(_MSC_VER)
 E void FDECL(msleep, (unsigned));
 #endif
@@ -1500,19 +1500,19 @@ E boolean FDECL(is_autopickup_exception, (struct obj *, BOOLEAN_P));
 
 /* ### pline.c ### */
 
-E void VDECL(pline, (const char *,...));
-E void VDECL(Norep, (const char *,...));
+E void pline(const char *,...);
+E void Norep(const char *,...);
 E void NDECL(free_youbuf);
-E void VDECL(You, (const char *,...));
-E void VDECL(Your, (const char *,...));
-E void VDECL(You_feel, (const char *,...));
-E void VDECL(You_cant, (const char *,...));
-E void VDECL(You_hear, (const char *,...));
-E void VDECL(pline_The, (const char *,...));
-E void VDECL(There, (const char *,...));
-E void VDECL(verbalize, (const char *,...));
-E void VDECL(raw_printf, (const char *,...));
-E void VDECL(impossible, (const char *,...));
+E void You(const char *,...);
+E void Your(const char *,...);
+E void You_feel(const char *,...);
+E void You_cant(const char *,...);
+E void You_hear(const char *,...);
+E void pline_The(const char *,...);
+E void There(const char *,...);
+E void verbalize(const char *,...);
+E void raw_printf(const char *,...);
+E void impossible(const char *,...);
 E const char *FDECL(align_str, (ALIGNTYP_P));
 E void FDECL(mstatusline, (struct monst *));
 E void NDECL(ustatusline);
@@ -2067,7 +2067,7 @@ E void FDECL(settty, (const char *));
 E void NDECL(setftty);
 E void NDECL(intron);
 E void NDECL(introff);
-E void VDECL(error, (const char *,...));
+E void error(const char *,...);
 #endif /* UNIX || __BEOS__ */
 
 /* ### unixunix.c ### */
@@ -2196,7 +2196,7 @@ E void FDECL(shuttty, (const char *));
 E void NDECL(setftty);
 E void NDECL(intron);
 E void NDECL(introff);
-E void VDECL(error, (const char *,...));
+E void error(const char *,...);
 #ifdef TIMED_DELAY
 E void FDECL(msleep, (unsigned));
 #endif

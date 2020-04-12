@@ -258,12 +258,12 @@ E int FDECL(umask, (int));
 # endif
 /* #include <unixio.h> */
 E int FDECL(close, (int));
-E int VDECL(creat, (const char *,unsigned,...));
+E int creat(const char *,unsigned,...);
 E int FDECL(delete, (const char *));
 E int FDECL(fstat, ( /*_ int, stat_t * _*/ ));
 E int FDECL(isatty, (int));	/* 1==yes, 0==no, -1==error */
 E long FDECL(lseek, (int,long,int));
-E int VDECL(open, (const char *,int,unsigned,...));
+E int open(const char *,int,unsigned,...);
 E int FDECL(read, (int,genericptr_t,unsigned));
 E int FDECL(rename, (const char *,const char *));
 E int FDECL(stat, ( /*_ const char *,stat_t * _*/ ));

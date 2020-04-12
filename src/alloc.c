@@ -25,7 +25,7 @@ static boolean tried_heaplog = FALSE;
 #endif
 
 long *FDECL(alloc,(unsigned int));
-extern void VDECL(panic, (const char *,...));
+extern void panic(const char *,...);
 
 
 long *

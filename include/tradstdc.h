@@ -60,8 +60,6 @@
 
 # define FDECL(f,p)	f p
 
-# define VDECL(f,p)	f p
-
 /* generic pointer, always a macro; genericptr_t is usually a typedef */
 # define genericptr	void *
 
