@@ -93,10 +93,10 @@ lowc(c)			/* force 'c' into lowercase */
 
 int
 strncmpi(s1, s2, n)	/* case insensitive counted string comparison */
-    register const char *s1, *s2;
-    register int n; /*(should probably be size_t, which is usually unsigned)*/
+    const char *s1, *s2;
+    int n; /*(should probably be size_t, which is usually unsigned)*/
 {					/*{ aka strncasecmp }*/
-    register char t1, t2;
+    char t1, t2;
 
     while (n--) {
 	if (!*s2) return (*s1 != 0);	/* s1 >= s2 */

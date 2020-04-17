@@ -130,9 +130,9 @@ extern struct TagItem wintags[];
 #ifndef	SHAREDLIB
 #ifndef __GNUC__
 void __asm LayerFillHook(
-    register __a0 struct Hook *hk,
-    register __a2 struct RastPort *rp,
-    register __a1 struct FillParams *fp );
+    __a0 struct Hook *hk,
+    __a2 struct RastPort *rp,
+    __a1 struct FillParams *fp );
 #else
 #ifdef __PPC__
 struct EmulLibEntry LayerFillHook;

@@ -356,9 +356,9 @@ static struct obj *propellor;
 
 struct obj *
 select_rwep(mtmp)	/* select a ranged weapon for the monster */
-register struct monst *mtmp;
+struct monst *mtmp;
 {
-	register struct obj *otmp;
+	struct obj *otmp;
 	int i;
 
 #ifdef KOPS
@@ -483,10 +483,10 @@ static const NEARDATA short hwep[] = {
 
 struct obj *
 select_hwep(mtmp)	/* select a hand to hand weapon for the monster */
-register struct monst *mtmp;
+struct monst *mtmp;
 {
-	register struct obj *otmp;
-	register int i;
+	struct obj *otmp;
+	int i;
 	boolean strong = strongmonst(mtmp->data);
 	boolean wearing_shield = (mtmp->misc_worn_check & W_ARMS) != 0;
 
@@ -579,7 +579,7 @@ boolean polyspot;
  */
 int
 mon_wield_item(mon)
-register struct monst *mon;
+struct monst *mon;
 {
 	struct obj *obj;
 
@@ -1300,8 +1300,8 @@ const struct def_skill *class_skill;
 
 void
 setmnotwielded(mon,obj)
-register struct monst *mon;
-register struct obj *obj;
+struct monst *mon;
+struct obj *obj;
 {
     if (!obj) return;
     if (artifact_light(obj) && obj->lamplit) {

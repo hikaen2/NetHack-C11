@@ -202,7 +202,7 @@ STATIC_OVL void
 winch()
 {
     int oldLI = LI, oldCO = CO, i;
-    register struct WinDesc *cw;
+    struct WinDesc *cw;
 
     getwindowsz();
     if((oldLI != LI || oldCO != CO) && ttyDisplay) {
@@ -661,7 +661,7 @@ void
 tty_askname()
 {
     static char who_are_you[] = "Who are you? ";
-    register int c, ct, tryct = 0;
+    int c, ct, tryct = 0;
 
     tty_putstr(BASE_WINDOW, 0, "");
     do {
@@ -970,7 +970,7 @@ void
 tty_clear_nhwindow(window)
     winid window;
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -1011,7 +1011,7 @@ tty_clear_nhwindow(window)
 
 STATIC_OVL void
 dmore(cw, s)
-    register struct WinDesc *cw;
+    struct WinDesc *cw;
     const char *s;			/* valid responses */
 {
     const char *prompt = cw->morestr ? cw->morestr : defmorestr;
@@ -1436,7 +1436,7 @@ winid window;
 struct WinDesc *cw;
 {
     int i, n, attr;
-    register char *cp;
+    char *cp;
 
     for (n = 0, i = 0; i < cw->maxrow; i++) {
 	if (!cw->offx && (n + cw->offy == ttyDisplay->rows - 1)) {
@@ -1490,7 +1490,7 @@ tty_display_nhwindow(window, blocking)
     winid window;
     boolean blocking;	/* with ttys, all windows are blocking */
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -1557,7 +1557,7 @@ void
 tty_dismiss_nhwindow(window)
     winid window;
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -1600,7 +1600,7 @@ void
 tty_destroy_nhwindow(window)
     winid window;
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -1620,7 +1620,7 @@ tty_destroy_nhwindow(window)
 void
 tty_curs(window, x, y)
 winid window;
-register int x, y;	/* not xchar: perhaps xchar is unsigned and
+int x, y;	/* not xchar: perhaps xchar is unsigned and
 			   curx-x would be unsigned as well */
 {
     struct WinDesc *cw = 0;
@@ -1699,7 +1699,7 @@ tty_putsym(window, x, y, ch)
     int x, y;
     char ch;
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
 
     if(window == WIN_ERR || (cw = wins[window]) == (struct WinDesc *) 0)
 	panic(winpanicstr,  window);
@@ -1729,8 +1729,8 @@ const char *str;
 	static char cbuf[BUFSZ];
 	/* compress in case line too long */
 	if((int)strlen(str) >= CO) {
-		register const char *bp0 = str;
-		register char *bp1 = cbuf;
+		const char *bp0 = str;
+		char *bp1 = cbuf;
 
 		do {
 #ifdef CLIPPING
@@ -1751,10 +1751,10 @@ tty_putstr(window, attr, str)
     int attr;
     const char *str;
 {
-    register struct WinDesc *cw = 0;
-    register char *ob;
-    register const char *nb;
-    register int i, j, n0;
+    struct WinDesc *cw = 0;
+    char *ob;
+    const char *nb;
+    int i, j, n0;
 
     /* Assume there's a real problem if the window is missing --
      * probably a panic message
@@ -1900,7 +1900,7 @@ boolean complain;
 #ifdef DEF_PAGER			/* this implies that UNIX is defined */
     {
 	/* use external pager; this may give security problems */
-	register int fd = open(fname, 0);
+	int fd = open(fname, 0);
 
 	if(fd < 0) {
 	    if(complain) pline("Cannot open %s.", fname);
@@ -1994,7 +1994,7 @@ tty_add_menu(window, glyph, identifier, ch, gch, attr, str, preselected)
     const char *str;	/* menu string */
     boolean preselected; /* item is marked as selected */
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
     tty_menu_item *item;
     const char *newstr;
     char buf[4+BUFSZ];
@@ -2157,7 +2157,7 @@ tty_select_menu(window, how, menu_list)
     int how;
     menu_item **menu_list;
 {
-    register struct WinDesc *cw = 0;
+    struct WinDesc *cw = 0;
     tty_menu_item *curr;
     menu_item *mi;
     int n, cancelled;
@@ -2264,10 +2264,10 @@ tty_wait_synch()
 
 void
 docorner(xmin, ymax)
-    register int xmin, ymax;
+    int xmin, ymax;
 {
-    register int y;
-    register struct WinDesc *cw = wins[WIN_MAP];
+    int y;
+    struct WinDesc *cw = wins[WIN_MAP];
 
     if (u.uswallow) {	/* Can be done more efficiently */
 	swallowed(1);
@@ -2325,7 +2325,7 @@ void
 g_putch(in_ch)
 int in_ch;
 {
-    register char ch = (char)in_ch;
+    char ch = (char)in_ch;
 
 # if defined(ASCIIGRAPH) && !defined(NO_TERMS)
     if (iflags.IBMgraphics || iflags.eight_bit_tty) {

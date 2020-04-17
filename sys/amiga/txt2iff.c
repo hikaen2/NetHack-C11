@@ -88,7 +88,7 @@ pixel pixels[TILE_Y][TILE_X];
 AmiColorMap *cmap;
 
 
-int findcolor( register pixel *pix );
+int findcolor( pixel *pix );
 void packwritebody(  pixel (*tile)[TILE_X], char **planes, int tileno );
 
 
@@ -288,9 +288,9 @@ main( int argc, char **argv )
     exit( 0 );
 }
 
-findcolor( register pixel *pix )
+findcolor( pixel *pix )
 {
-    register int i;
+    int i;
 
     for( i = 0; i < MAXCOLORMAPSIZE; ++i )
     {
@@ -307,9 +307,9 @@ findcolor( register pixel *pix )
 void
 packwritebody( pixel (*tile)[TILE_X], char **planes, int tileno )
 {
-    register int i, j, k, col;
-    register char *buf;
-    register int across, rowbytes, xoff, yoff;
+    int i, j, k, col;
+    char *buf;
+    int across, rowbytes, xoff, yoff;
 
     /* how many tiles fit across? */
     across = COLS;

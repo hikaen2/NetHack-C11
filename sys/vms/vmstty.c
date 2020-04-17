@@ -227,7 +227,7 @@ static const char *arrow_or_PF = "ABCDPQRS",	/* suffix char */
 
 static short
 parse_function_key(c)
-register int c;
+int c;
 {
     struct _rd_iosb iosb;
     unsigned long sts;
@@ -250,13 +250,13 @@ register int c;
     } else
 	sts = SS$_NORMAL;
     if (vms_ok(sts) || sts == SS$_TIMEOUT) {
-	register int cnt = iosb.trm_offset + iosb.trm_siz + inc;
-	register char *p = seq_buf;
+	int cnt = iosb.trm_offset + iosb.trm_siz + inc;
+	char *p = seq_buf;
 	if (c == ESC)	/* check for 7-bit vt100/ANSI, or vt52 */
 	    if (*p == '[' || *p == 'O') c = META(CTRL(*p++)),  cnt--;
 	    else if (strchr(arrow_or_PF, *p)) c = SS3; /*CSI*/
 	if (cnt > 0 && (c == SS3 || (c == CSI && strchr(arrow_or_PF, *p)))) {
-	    register char *q = strchr(smg_keypad_codes, *p);
+	    char *q = strchr(smg_keypad_codes, *p);
 	    if (q) result = 256 + (q - smg_keypad_codes);
 	    p++,  --cnt;	/* one more char consumed */
 	} else if (cnt > 1 && c == CSI) {

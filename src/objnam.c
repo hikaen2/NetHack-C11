@@ -59,10 +59,10 @@ STATIC_DCL const char *Japanese_item_name(int i);
 
 STATIC_OVL char *
 strprepend(s,pref)
-register char *s;
-register const char *pref;
+char *s;
+const char *pref;
 {
-	register int i = (int)strlen(pref);
+	int i = (int)strlen(pref);
 
 	if(i > PREFIX) {
 		impossible("PREFIX too short (for %d).", i);
@@ -89,14 +89,14 @@ nextobuf()
 
 char *
 obj_typename(otyp)
-register int otyp;
+int otyp;
 {
 	char *buf = nextobuf();
-	register struct objclass *ocl = &objects[otyp];
-	register const char *actualn = OBJ_NAME(*ocl);
-	register const char *dn = OBJ_DESCR(*ocl);
-	register const char *un = ocl->oc_uname;
-	register int nn = ocl->oc_name_known;
+	struct objclass *ocl = &objects[otyp];
+	const char *actualn = OBJ_NAME(*ocl);
+	const char *dn = OBJ_DESCR(*ocl);
+	const char *un = ocl->oc_uname;
+	int nn = ocl->oc_name_known;
 
 	if (Role_if(PM_SAMURAI) && Japanese_item_name(otyp))
 		actualn = Japanese_item_name(otyp);
@@ -180,7 +180,7 @@ int otyp;
 
 boolean
 obj_is_pname(obj)
-register struct obj *obj;
+struct obj *obj;
 {
     return((boolean)(obj->dknown && obj->known && obj->onamelth &&
 		     /* Since there aren't any objects which are both
@@ -197,7 +197,7 @@ register struct obj *obj;
  */
 char *
 distant_name(obj, func)
-register struct obj *obj;
+struct obj *obj;
 char *(*func)(OBJ_P);
 {
 	char *str;
@@ -232,15 +232,15 @@ boolean juice;	/* whether or not to append " juice" to the name */
 
 char *
 xname(obj)
-register struct obj *obj;
+struct obj *obj;
 {
-	register char *buf;
-	register int typ = obj->otyp;
-	register struct objclass *ocl = &objects[typ];
-	register int nn = ocl->oc_name_known;
-	register const char *actualn = OBJ_NAME(*ocl);
-	register const char *dn = OBJ_DESCR(*ocl);
-	register const char *un = ocl->oc_uname;
+	char *buf;
+	int typ = obj->otyp;
+	struct objclass *ocl = &objects[typ];
+	int nn = ocl->oc_name_known;
+	const char *actualn = OBJ_NAME(*ocl);
+	const char *dn = OBJ_DESCR(*ocl);
+	const char *un = ocl->oc_uname;
 
 	buf = nextobuf() + PREFIX;	/* leave room for "17 -3 " */
 	if (Role_if(PM_SAMURAI) && Japanese_item_name(typ))
@@ -336,7 +336,7 @@ register struct obj *obj;
 		break;
 	    case FOOD_CLASS:
 		if (typ == SLIME_MOLD) {
-			register struct fruit *f;
+			struct fruit *f;
 
 			for(f=ffruit; f; f = f->nextf) {
 				if(f->fid == obj->spe) {
@@ -506,7 +506,7 @@ struct obj *obj;
 /* used for naming "the unique_item" instead of "a unique_item" */
 boolean
 the_unique_obj(obj)
-register struct obj *obj;
+struct obj *obj;
 {
     if (!obj->dknown)
 	return FALSE;
@@ -555,7 +555,7 @@ char *prefix;
 
 char *
 doname(obj)
-register struct obj *obj;
+struct obj *obj;
 {
 	boolean ispoisoned = FALSE;
 	char prefix[PREFIX];
@@ -563,7 +563,7 @@ register struct obj *obj;
 	/* when we have to add something at the start of prefix instead of the
 	 * end (Strcat is used on the end)
 	 */
-	register char *bp = xname(obj);
+	char *bp = xname(obj);
 
 	/* When using xname, we want "poisoned arrow", and when using
 	 * doname, we want "poisoned +0 arrow".  This kludge is about the only
@@ -795,7 +795,7 @@ ring:
 /* used from invent.c */
 boolean
 not_fully_identified(otmp)
-register struct obj *otmp;
+struct obj *otmp;
 {
 #ifdef GOLDOBJ
     /* gold doesn't have any interesting attributes [yet?] */
@@ -900,7 +900,7 @@ struct obj *obj;
  */
 const char *
 singular(otmp, func)
-register struct obj *otmp;
+struct obj *otmp;
 char *(*func)(OBJ_P);
 {
 	long savequan;
@@ -919,7 +919,7 @@ char *(*func)(OBJ_P);
 
 char *
 an(str)
-register const char *str;
+const char *str;
 {
 	char *buf = nextobuf();
 
@@ -948,7 +948,7 @@ char *
 An(str)
 const char *str;
 {
-	register char *tmp = an(str);
+	char *tmp = an(str);
 	*tmp = highc(*tmp);
 	return tmp;
 }
@@ -973,7 +973,7 @@ const char *str;
 	    insert_the = TRUE;
 	} else {
 	    /* Probably a proper name, might not need an article */
-	    register char *tmp, *named, *called;
+	    char *tmp, *named, *called;
 	    int l;
 
 	    /* some objects have capitalized adjectives in their names */
@@ -1008,7 +1008,7 @@ char *
 The(str)
 const char *str;
 {
-    register char *tmp = the(str);
+    char *tmp = the(str);
     *tmp = highc(*tmp);
     return tmp;
 }
@@ -1016,10 +1016,10 @@ const char *str;
 /* returns "count cxname(otmp)" or just cxname(otmp) if count == 1 */
 char *
 aobjnam(otmp,verb)
-register struct obj *otmp;
-register const char *verb;
+struct obj *otmp;
+const char *verb;
 {
-	register char *bp = cxname(otmp);
+	char *bp = cxname(otmp);
 	char prefix[PREFIX];
 
 	if(otmp->quan != 1L) {
@@ -1037,8 +1037,8 @@ register const char *verb;
 /* like aobjnam, but prepend "The", not count, and use xname */
 char *
 Tobjnam(otmp, verb)
-register struct obj *otmp;
-register const char *verb;
+struct obj *otmp;
+const char *verb;
 {
 	char *bp = The(xname(otmp));
 
@@ -1052,8 +1052,8 @@ register const char *verb;
 /* return form of the verb (input plural) if xname(otmp) were the subject */
 char *
 otense(otmp, verb)
-register struct obj *otmp;
-register const char *verb;
+struct obj *otmp;
+const char *verb;
 {
 	char *buf;
 
@@ -1086,8 +1086,8 @@ static const char * const special_subjs[] = {
 /* return form of the verb (input plural) for present tense 3rd person subj */
 char *
 vtense(subj, verb)
-register const char *subj;
-register const char *verb;
+const char *subj;
+const char *verb;
 {
 	char *buf = nextobuf();
 	int len, ltmp;
@@ -1181,9 +1181,9 @@ register const char *verb;
 /* capitalized variant of doname() */
 char *
 Doname2(obj)
-register struct obj *obj;
+struct obj *obj;
 {
-	register char *s = doname(obj);
+	char *s = doname(obj);
 
 	*s = highc(*s);
 	return(s);
@@ -1269,7 +1269,7 @@ makeplural(oldstr)
 const char *oldstr;
 {
 	/* Note: cannot use strcmpi here -- it'd give MATZot, CAVEMeN,... */
-	register char *spot;
+	char *spot;
 	char *str = nextobuf();
 	const char *excess = (char *)0;
 	int len;
@@ -1536,7 +1536,7 @@ char *
 makesingular(oldstr)
 const char *oldstr;
 {
-	register char *p, *bp;
+	char *p, *bp;
 	char *str = nextobuf();
 
 	if (!oldstr || !*oldstr) {
@@ -1748,13 +1748,13 @@ struct alt_spellings {
  */
 struct obj *
 readobjnam(bp, no_wish, from_user)
-register char *bp;
+char *bp;
 struct obj *no_wish;
 boolean from_user;
 {
-	register char *p;
-	register int i;
-	register struct obj *otmp;
+	char *p;
+	int i;
+	struct obj *otmp;
 	int cnt, spe, spesgn, typ, very, rechrg;
 	int blessed, uncursed, iscursed, ispoisoned, isgreased;
 	int eroded, eroded2, erodeproof;
@@ -1811,7 +1811,7 @@ boolean from_user;
 	Strcpy(fruitbuf, bp);
 
 	for(;;) {
-		register int l;
+		int l;
 
 		if (!bp || !*bp) goto any;
 		if (!strncmpi(bp, "an ", l=3) ||
@@ -2133,7 +2133,7 @@ boolean from_user;
 	   strncmpi(bp, "meat ring", 9)
 	)
 	for (i = 0; i < (int)(sizeof wrpsym); i++) {
-		register int j = strlen(wrp[i]);
+		int j = strlen(wrp[i]);
 		if(!strncmpi(bp, wrp[i], j)){
 			oclass = wrpsym[i];
 			if(oclass != AMULET_CLASS) {
@@ -2169,7 +2169,7 @@ boolean from_user;
 	} else if (!strcmpi(bp, "looking glass")) {
 		;	/* avoid false hit on "* glass" */
 	} else if (!BSTRCMPI(bp, p-6, " glass") || !strcmpi(bp, "glass")) {
-		register char *g = bp;
+		char *g = bp;
 		if (strstri(g, "broken")) return (struct obj *)0;
 		if (!strncmpi(g, "worthless ", 10)) g += 10;
 		if (!strncmpi(g, "piece of ", 9)) g += 9;
@@ -2194,7 +2194,7 @@ srch:
 	/* check real names of gems first */
 	if(!oclass && actualn) {
 	    for(i = bases[GEM_CLASS]; i <= LAST_GEM; i++) {
-		register const char *zn;
+		const char *zn;
 
 		if((zn = OBJ_NAME(objects[i])) && !strcmpi(actualn, zn)) {
 		    typ = i;
@@ -2204,7 +2204,7 @@ srch:
 	}
 	i = oclass ? bases[(int)oclass] : 1;
 	while(i < NUM_OBJECTS && (!oclass || objects[i].oc_class == oclass)){
-		register const char *zn;
+		const char *zn;
 
 		if (actualn && (zn = OBJ_NAME(objects[i])) != 0 &&
 			    wishymatch(actualn, zn, TRUE)) {

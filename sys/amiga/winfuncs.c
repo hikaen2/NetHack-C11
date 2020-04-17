@@ -137,11 +137,11 @@ struct TagItem wintags[] =
 
 void
 amii_destroy_nhwindow(win)      /* just hide */
-    register winid win;
+    winid win;
 {
     int i;
     int type;
-    register struct amii_WinDesc *cw;
+    struct amii_WinDesc *cw;
 
     if( win == WIN_ERR || ( cw = amii_wins[win] ) == NULL )
     {
@@ -253,9 +253,9 @@ void PPC_LayerFillHook(void) {
    struct FillParams *fp = (struct FillParams*)REG_A1;
 #else
 void LayerFillHook(void) {
-    register struct Hook *hk asm("a0");
-    register struct RastPort *rp asm("a2");
-    register struct FillParams *fp asm("a1");
+    struct Hook *hk asm("a0");
+    struct RastPort *rp asm("a2");
+    struct FillParams *fp asm("a1");
 #endif
 #else
 void
@@ -263,14 +263,14 @@ void
 __interrupt
 #endif
 __saveds __asm LayerFillHook(
-    register __a0 struct Hook *hk,
-    register __a2 struct RastPort *rp,
-    register __a1 struct FillParams *fp )
+    __a0 struct Hook *hk,
+    __a2 struct RastPort *rp,
+    __a1 struct FillParams *fp )
 {
 #endif
 
-    register long x, y, xmax, ymax;
-    register int apen;
+    long x, y, xmax, ymax;
+    int apen;
     struct RastPort rptmp;
 
     memcpy(&rptmp, rp, sizeof(struct RastPort));
@@ -315,13 +315,13 @@ __saveds __asm LayerFillHook(
 
 
 amii_create_nhwindow(type)
-    register int type;
+    int type;
 {
-    register struct Window *w = NULL;
-    register struct NewWindow *nw = NULL;
-    register struct amii_WinDesc *wd = NULL;
+    struct Window *w = NULL;
+    struct NewWindow *nw = NULL;
+    struct amii_WinDesc *wd = NULL;
     struct Window *mapwin = NULL, *stwin = NULL, *msgwin = NULL;
-    register int newid;
+    int newid;
     int maph, stath, scrfontysize;
 
     scrfontysize = HackScreen->Font->ta_YSize;
@@ -804,7 +804,7 @@ amii_create_nhwindow(type)
 	    SetMenuStrip(w, MenuStrip);
 	    /* Make our requesters come to our screen */
 	    {
-		register struct Process *myProcess =
+		struct Process *myProcess =
 					(struct Process *) FindTask(NULL);
 		pr_WindowPtr = (struct Window *)(myProcess->pr_WindowPtr);
 		myProcess->pr_WindowPtr = (APTR) w;
@@ -854,9 +854,9 @@ int PPC_SM_Filter(void) {
    struct ScreenModeRequester *smr = (struct ScreenModeRequester *)REG_A2;
 #else
 int SM_Filter(void) {
-    register struct Hook *hk asm("a0");
-    register ULONG modeID asm("a1");
-    register struct ScreenModeRequester *smr asm("a2");
+    struct Hook *hk asm("a0");
+    ULONG modeID asm("a1");
+    struct ScreenModeRequester *smr asm("a2");
 #endif
 #else
 int
@@ -864,9 +864,9 @@ int
 __interrupt
 #endif
 __saveds __asm SM_Filter(
-    register __a0 struct Hook *hk,
-    register __a1 ULONG modeID,
-    register __a2 struct ScreenModeRequester *smr)
+    __a0 struct Hook *hk,
+    __a1 ULONG modeID,
+    __a2 struct ScreenModeRequester *smr)
 {
 #endif
     struct DimensionInfo dims;
@@ -1412,10 +1412,10 @@ amii_setdrawpens( struct Window *w, int type )
 
 void
 amii_clear_nhwindow(win)
-    register winid win;
+    winid win;
 {
-    register struct amii_WinDesc *cw;
-    register struct Window *w;
+    struct amii_WinDesc *cw;
+    struct Window *w;
 
     if( reclip == 2 ) return;
 
@@ -1475,10 +1475,10 @@ amii_clear_nhwindow(win)
 
 void
 dismiss_nhwindow(win)
-    register winid win;
+    winid win;
 {
-    register struct Window *w;
-    register struct amii_WinDesc *cw;
+    struct Window *w;
+    struct amii_WinDesc *cw;
 
     if( win == WIN_ERR || ( cw = amii_wins[win] ) == NULL )
     {
@@ -1583,12 +1583,12 @@ amii_display_nhwindow(win,blocking)
 void
 amii_curs(window, x, y)
 winid window;
-register int x, y;  /* not xchar: perhaps xchar is unsigned and
+int x, y;  /* not xchar: perhaps xchar is unsigned and
 	       curx-x would be unsigned as well */
 {
-    register struct amii_WinDesc *cw;
-    register struct Window *w;
-    register struct RastPort *rp;
+    struct amii_WinDesc *cw;
+    struct Window *w;
+    struct RastPort *rp;
 
     if( window == WIN_ERR || ( cw = amii_wins[window] ) == NULL )
 	panic(winpanicstr,  window, "curs");
@@ -1749,8 +1749,8 @@ amii_set_text_font( name, size )
     char *name;
     int size;
 {
-    register int i;
-    register struct amii_WinDesc *cw;
+    int i;
+    struct amii_WinDesc *cw;
     int osize = TextsFont13.ta_YSize;
     static char nname[ 100 ];
 
@@ -1797,10 +1797,10 @@ amii_set_text_font( name, size )
 
 void
 kill_nhwindows( all )
-    register int all;
+    int all;
 {
-    register int i;
-    register struct amii_WinDesc *cw;
+    int i;
+    struct amii_WinDesc *cw;
 
     /* Foreach open window in all of amii_wins[], CloseShWindow, free memory */
 
@@ -1815,11 +1815,11 @@ kill_nhwindows( all )
 
 void
 amii_cl_end( cw, curs_pos )
-    register struct amii_WinDesc *cw;
-    register int curs_pos;
+    struct amii_WinDesc *cw;
+    int curs_pos;
 {
-    register struct Window *w = cw->win;
-    register int oy, ox;
+    struct Window *w = cw->win;
+    int oy, ox;
 
     if( !w )
 	panic("NULL window pointer in amii_cl_end()");
@@ -1836,9 +1836,9 @@ void
 cursor_off( window )
     winid window;
 {
-    register struct amii_WinDesc *cw;
-    register struct Window *w;
-    register struct RastPort *rp;
+    struct amii_WinDesc *cw;
+    struct Window *w;
+    struct RastPort *rp;
     int curx, cury;
     int x, y;
     long dmode;
@@ -1901,9 +1901,9 @@ cursor_on( window )
     winid window;
 {
     int x, y;
-    register struct amii_WinDesc *cw;
-    register struct Window *w;
-    register struct RastPort *rp;
+    struct amii_WinDesc *cw;
+    struct Window *w;
+    struct RastPort *rp;
     unsigned char ch;
     long dmode;
     short apen, bpen;
@@ -2117,7 +2117,7 @@ if(u.uz.dlevel != x){
 
 void
 amii_raw_print(s)
-    register const char *s;
+    const char *s;
 {
     int argc = 0;
 
@@ -2154,7 +2154,7 @@ amii_raw_print(s)
 
 void
 amii_raw_print_bold(s)
-    register const char *s;
+    const char *s;
 {
     int argc = 0;
 
@@ -2191,7 +2191,7 @@ amii_raw_print_bold(s)
 void
 amii_update_inventory()
 {
-    register struct amii_WinDesc *cw;
+    struct amii_WinDesc *cw;
 
     if( WIN_INVEN != WIN_ERR && ( cw = amii_wins[ WIN_INVEN ] ) &&
 				cw->type == NHW_MENU && cw->win )
@@ -2247,7 +2247,7 @@ amii_setclipped()
  */
 void
 amii_cliparound(x,y)
-    register int x,y;
+    int x,y;
 {
     extern boolean restoring;
 #ifdef	CLIPPING

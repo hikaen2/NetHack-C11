@@ -14,7 +14,6 @@
  * <varargs.h> is available) to avoid the need for vprintf & vsprintf].
  *
  */
-#define REG register
 #define const
 
 #ifndef SUPPRESS_MEM_FUNCS
@@ -23,9 +22,9 @@
 /* void *memset(void *, int, size_t) -- fill chunk of memory.
 */
 char *memset( dst, fil, cnt )
-REG char *dst;
-REG char  fil;
-REG int   cnt;
+    char *dst;
+    char  fil;
+    int   cnt;
 {
     char *dst_p = dst;
     while ( --cnt >= 0 )
@@ -36,9 +35,9 @@ REG int   cnt;
 /* void *memcpy(void *, const void *, size_t) -- copy chunk of memory.
 */
 char *memcpy( dst, src, cnt )
-REG char       *dst;
-REG const char *src;
-REG int		cnt;
+    char       *dst;
+    const char *src;
+    int		cnt;
 {
     char *dst_p = dst;
     while ( --cnt >= 0 )
@@ -49,9 +48,9 @@ REG int		cnt;
 /* void *memmove(void *, const void *, size_t) -- copy possibly overlapping mem.
 */
 char *memmove( dst, src, cnt )
-REG char       *dst;
-REG const char *src;
-REG int		cnt;
+    char       *dst;
+    const char *src;
+    int		cnt;
 {
     char *dst_p = dst;
     if ( src == dst || cnt <= 0 ) {
@@ -70,9 +69,9 @@ REG int		cnt;
 /* void *memchr(const void *, int, size_t) -- search for a byte.
 */
 char *memchr( buf, byt, len )
-REG const char *buf;
-REG char		byt;
-REG int		len;
+    const char *buf;
+    char		byt;
+    int		len;
 {
     while ( --len >= 0 )
 	if ( *buf++ == byt )	/* found */
@@ -83,9 +82,9 @@ REG int		len;
 /* int memcmp(const void *, const void *, size_t) -- compare two chunks.
 */
 int memcmp( buf1, buf2, len )
-REG const char *buf1;
-REG const char *buf2;
-REG int		len;
+    const char *buf1;
+    const char *buf2;
+    int		len;
 {
     while ( --len >= 0 )
 	if ( *buf1++ != *buf2++ )
@@ -161,11 +160,11 @@ extern void free();
 void qsort( base, count, size, compare )
     char *base;
     int   count;
-REG int   size;
+    int   size;
     int (*compare)();
 {
-REG int   i, cmp;
-REG char *next, *prev, *tmp = 0;
+    int   i, cmp;
+    char *next, *prev, *tmp = 0;
     char  wrk_buf[512];
 
     /* just use a shuffle sort (tradeoff between efficiency & simplicity) */

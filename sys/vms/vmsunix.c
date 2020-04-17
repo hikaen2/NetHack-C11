@@ -38,7 +38,7 @@ static int
 veryold(fd)
 int fd;
 {
-	register int i;
+	int i;
 	time_t date;
 	struct stat buf;
 
@@ -77,7 +77,7 @@ int fd;
 void
 getlock()
 {
-	register int i = 0, fd;
+	int i = 0, fd;
 
 	/* idea from rpick%ucqais@uccba.uc.edu
 	 * prevent automated rerolling of characters
@@ -135,9 +135,9 @@ gotlock:
 
 void
 regularize(s)	/* normalize file name */
-register char *s;
+char *s;
 {
-	register char *lp;
+	char *lp;
 
 	for (lp = s; *lp; lp++)         /* note: '-' becomes '_' */
 	    if (!(isalpha(*lp) || isdigit(*lp) || *lp == '$'))
@@ -268,7 +268,7 @@ char *verify_term()
 
 	if (devtype &&
 	    vms_ok(smg$init_term_table_by_type(&devtype, &termtab, &smgdsc))) {
-	    register char *p = &smgdevtyp[smgdsc.dsc$w_length];
+	    char *p = &smgdevtyp[smgdsc.dsc$w_length];
 	    /* strip trailing blanks */
 	    while (p > smgdevtyp && *--p == ' ') *p = '\0';
 	    /* (void)smg$del_term_table(); */

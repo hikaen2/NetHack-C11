@@ -54,8 +54,8 @@ struct monst *mon, *other_mon;
 
 STATIC_OVL void
 noises(magr, mattk)
-	register struct monst *magr;
-	register struct	attack *mattk;
+	struct monst *magr;
+	struct	attack *mattk;
 {
 	boolean farq = (distu(magr->mx, magr->my) > 15);
 
@@ -71,7 +71,7 @@ noises(magr, mattk)
 STATIC_OVL
 void
 missmm(magr, mdef, mattk)
-	register struct monst *magr, *mdef;
+	struct monst *magr, *mdef;
 	struct attack *mattk;
 {
 	const char *fmt;
@@ -104,9 +104,9 @@ missmm(magr, mdef, mattk)
  */
 int
 fightm(mtmp)		/* have monsters fight each other */
-	register struct monst *mtmp;
+	struct monst *mtmp;
 {
-	register struct monst *mon, *nmon;
+	struct monst *mon, *nmon;
 	int result, has_u_swallowed;
 #ifdef LINT
 	nmon = 0;
@@ -193,7 +193,7 @@ fightm(mtmp)		/* have monsters fight each other */
  */
 int
 mattackm(magr, mdef)
-    register struct monst *magr,*mdef;
+    struct monst *magr,*mdef;
 {
     int		    i,		/* loop counter */
 		    tmp,	/* amour class difference */
@@ -380,7 +380,7 @@ mattackm(magr, mdef)
 /* Returns the result of mdamagem(). */
 STATIC_OVL int
 hitmm(magr, mdef, mattk)
-	register struct monst *magr,*mdef;
+	struct monst *magr,*mdef;
 	struct	attack *mattk;
 {
 	if(vis){
@@ -437,7 +437,7 @@ hitmm(magr, mdef, mattk)
 /* Returns the same values as mdamagem(). */
 STATIC_OVL int
 gazemm(magr, mdef, mattk)
-	register struct monst *magr, *mdef;
+	struct monst *magr, *mdef;
 	struct attack *mattk;
 {
 	char buf[BUFSZ];
@@ -486,8 +486,8 @@ gazemm(magr, mdef, mattk)
 /* Returns the same values as mattackm(). */
 STATIC_OVL int
 gulpmm(magr, mdef, mattk)
-	register struct monst *magr, *mdef;
-	register struct	attack *mattk;
+	struct monst *magr, *mdef;
+	struct	attack *mattk;
 {
 	xchar	ax, ay, dx, dy;
 	int	status;
@@ -554,8 +554,8 @@ gulpmm(magr, mdef, mattk)
 
 STATIC_OVL int
 explmm(magr, mdef, mattk)
-	register struct monst *magr, *mdef;
-	register struct	attack *mattk;
+	struct monst *magr, *mdef;
+	struct	attack *mattk;
 {
 	int result;
 
@@ -585,8 +585,8 @@ explmm(magr, mdef, mattk)
  */
 STATIC_OVL int
 mdamagem(magr, mdef, mattk)
-	register struct monst	*magr, *mdef;
-	register struct attack	*mattk;
+	struct monst	*magr, *mdef;
+	struct attack	*mattk;
 {
 	struct obj *obj;
 	char buf[BUFSZ];
@@ -909,7 +909,7 @@ mdamagem(magr, mdef, mattk)
 		break;
 	    case AD_BLND:
 		if (can_blnd(magr, mdef, mattk->aatyp, (struct obj*)0)) {
-		    register unsigned rnd_tmp;
+		    unsigned rnd_tmp;
 
 		    if (vis && mdef->mcansee)
 			pline("%s is blinded.", Monnam(mdef));
@@ -1218,8 +1218,8 @@ struct monst *mon;
 
 STATIC_OVL void
 mrustm(magr, mdef, obj)
-register struct monst *magr, *mdef;
-register struct obj *obj;
+struct monst *magr, *mdef;
+struct obj *obj;
 {
 	boolean is_acid;
 
@@ -1255,8 +1255,8 @@ register struct obj *obj;
 
 STATIC_OVL void
 mswingsm(magr, mdef, otemp)
-register struct monst *magr, *mdef;
-register struct obj *otemp;
+struct monst *magr, *mdef;
+struct obj *otemp;
 {
 	char buf[BUFSZ];
 	if (!flags.verbose || Blind || !mon_visible(magr)) return;
@@ -1272,12 +1272,12 @@ register struct obj *otemp;
  */
 STATIC_OVL int
 passivemm(magr,mdef,mhit,mdead)
-register struct monst *magr, *mdef;
+struct monst *magr, *mdef;
 boolean mhit;
 int mdead;
 {
-	register struct permonst *mddat = mdef->data;
-	register struct permonst *madat = magr->data;
+	struct permonst *mddat = mdef->data;
+	struct permonst *madat = magr->data;
 	char buf[BUFSZ];
 	int i, tmp;
 

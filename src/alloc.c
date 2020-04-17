@@ -30,7 +30,7 @@ extern void panic(const char *,...);
 
 long *
 alloc(lth)
-register unsigned int lth;
+unsigned int lth;
 {
 #ifdef LINT
 /*
@@ -43,7 +43,7 @@ register unsigned int lth;
 	if(lth) dummy = 0;	/* make sure arg is used */
 	return(&dummy);
 #else
-	register genericptr_t ptr;
+	genericptr_t ptr;
 
 	ptr = malloc(lth);
 #ifndef MONITOR_HEAP

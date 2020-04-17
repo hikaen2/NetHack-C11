@@ -119,8 +119,8 @@ long
 freediskspace(path)
 char *path;
 {
-    register long freeBytes = 0;
-    register struct InfoData *infoData; /* Remember... longword aligned */
+    long freeBytes = 0;
+    struct InfoData *infoData; /* Remember... longword aligned */
     char fileName[32];
 
     /*
@@ -132,7 +132,7 @@ char *path;
      *  so must be on the current device, so "" is enough...
      */
     {
-    register char *colon;
+    char *colon;
 
     strncpy(fileName, path, sizeof(fileName) - 1);
     fileName[31] = 0;
@@ -176,9 +176,9 @@ long
 filesize(file)
 char *file;
 {
-    register BPTR fileLock;
-    register struct FileInfoBlock *fileInfoBlock;
-    register long size = 0;
+    BPTR fileLock;
+    struct FileInfoBlock *fileInfoBlock;
+    long size = 0;
 
     fileInfoBlock = (struct FileInfoBlock *)alloc(sizeof(struct FileInfoBlock));
     if (fileLock = Lock(file, SHARED_LOCK)) {
@@ -232,9 +232,9 @@ const char *path, *files;
 char *CopyFile(from, to)
 const char *from, *to;
 {
-    register BPTR fromFile, toFile;
-    register char *buffer;
-    register long size;
+    BPTR fromFile, toFile;
+    char *buffer;
+    long size;
     char *error = NULL;
 
     buffer = (char *) alloc(COPYSIZE);
@@ -373,11 +373,11 @@ const char *str;
 
 FILE *
 fopenp(name, mode)
-register const char *name, *mode;
+const char *name, *mode;
 {
-    register char *bp, *pp, lastch;
-    register FILE *fp;
-    register BPTR theLock;
+    char *bp, *pp, lastch;
+    FILE *fp;
+    BPTR theLock;
     char buf[BUFSIZ];
 
     /* Try the default directory first.  Then look along PATH.
@@ -481,9 +481,9 @@ nethack_exit(code)
 
 void
 regularize(s)    /* normalize file name - we don't like :'s or /'s */
-register char *s;
+char *s;
 {
-    register char *lp;
+    char *lp;
 
     while((lp = index(s, ':')) || (lp = index(s, '/')))
 	*lp = '_';

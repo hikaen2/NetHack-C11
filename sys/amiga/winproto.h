@@ -29,7 +29,7 @@ long FindLine( winid, int );
 int amii_doprev_message ( void );
 void flushIDCMP( struct MsgPort * );
 int amii_msgborder( struct Window * );
-void amii_scrollmsg( register struct Window *w, register struct amii_WinDesc *cw );
+void amii_scrollmsg( struct Window *w, struct amii_WinDesc *cw );
 
 /* winkey.c */
 int amii_nh_poskey ( int *x , int *y , int *mod );
@@ -125,7 +125,7 @@ char amii_yn_function ( const char *prompt , const char *resp , char def );
 char amii_yn_function ( const char *query , const char *resp , char def );
 void amii_display_file ( const char *fn , boolean complain );
 void SetBorder ( struct Gadget *gd );
-void *malloc ( register unsigned size );
+void *malloc ( unsigned size );
 void free ( void *q );
 
 #ifdef	SHAREDLIB

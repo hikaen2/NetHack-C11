@@ -175,7 +175,7 @@ extern const char *hu_stat[];	/* defined in eat.c */
 extern const char *enc_stat[]; /* define in botl.c */
 void FormatStatusString(char* text, int format)
 {
-	register char *nb;
+	char *nb;
 	int hp, hpmax;
 	int cap = near_capacity();
 

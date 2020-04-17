@@ -209,7 +209,7 @@ const char *d1, *d2;
 int c__translate(code)
     int code;
 {
-    register int trans;
+    int trans;
 
     switch ((code & 0x0FFFFFF8) >> 3) {	/* strip upper 4 and bottom 3 bits */
 	CASE2(RMS$_PRV,SS$_NOPRIV):
@@ -266,7 +266,7 @@ const char *name;
 {
     unsigned len;
     char *base, *base_p;
-    register const char *name_p;
+    const char *name_p;
 
     /* skip directory/path */
     if ((name_p = strrchr(name, ']')) != 0) name = name_p + 1;

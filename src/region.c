@@ -197,7 +197,7 @@ remove_mon_from_reg(reg, mon)
 NhRegion *reg;
 struct monst *mon;
 {
-    register int i;
+    int i;
 
     for (i = 0; i < reg->n_monst; i++)
 	if (reg->monsters[i] == mon->m_id) {
@@ -325,7 +325,7 @@ void
 remove_region(reg)
 NhRegion *reg;
 {
-    register int i, x, y;
+    int i, x, y;
 
     for (i = 0; i < n_regions; i++)
 	if (regions[i] == reg)
@@ -353,7 +353,7 @@ NhRegion *reg;
 void
 clear_regions()
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++)
 	free_region(regions[i]);
@@ -372,7 +372,7 @@ clear_regions()
 void
 run_regions()
 {
-    register int i, j, k;
+    int i, j, k;
     int f_indx;
 
     /* End of life ? */
@@ -517,7 +517,7 @@ xchar x, y;
 void
 update_player_regions()
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++)
 	if (!regions[i]->attach_2_u && inside_region(regions[i], u.ux, u.uy))
@@ -533,7 +533,7 @@ void
 update_monster_region(mon)
 struct monst *mon;
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++) {
 	if (inside_region(regions[i], mon->mx, mon->my)) {
@@ -558,7 +558,7 @@ void
 replace_mon_regions(monold, monnew)
 struct monst *monold, *monnew;
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++)
 	if (mon_in_region(regions[i], monold)) {
@@ -574,7 +574,7 @@ void
 remove_mon_from_regions(mon)
 struct monst *mon;
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++)
 	if (mon_in_region(regions[i], mon))
@@ -591,7 +591,7 @@ NhRegion *
 visible_region_at(x, y)
 xchar x, y;
 {
-    register int i;
+    int i;
 
     for (i = 0; i < n_regions; i++)
 	if (inside_region(regions[i], x, y) && regions[i]->visible &&

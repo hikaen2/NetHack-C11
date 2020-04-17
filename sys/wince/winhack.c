@@ -159,7 +159,7 @@ PNHWinApp GetNHApp()
 static int
 eraseoldlocks()
 {
-	register int i;
+	int i;
 
 	/* cannot use maxledgerno() here, because we need to find a lock name
 	 * before starting everything (including the dungeon initialization
@@ -330,9 +330,9 @@ TCHAR* _get_cmd_arg(TCHAR* pCmdLine)
 
 void
 nt_regularize(s)	/* normalize file name */
-register char *s;
+char *s;
 {
-	register unsigned char *lp;
+	unsigned char *lp;
 
 	for (lp = s; *lp; lp++)
 	    if ( *lp == '?' || *lp == '"' || *lp == '\\' ||

@@ -32,9 +32,9 @@ main(argc,argv)
 int argc;
 char *argv[];
 {
-	register int fd;
+	int fd;
 #ifdef CHDIR
-	register char *dir;
+	char *dir;
 #endif
 
 #ifdef SECURE	/* this should be the very first code executed */
@@ -366,7 +366,7 @@ whoami()
 	 * Note that we trust the user here; it is possible to play under
 	 * somebody else's name.
 	 */
-	register char *s;
+	char *s;
 
 	if (!*plname && (s = nh_getenv("USER")))
 		(void) lcase(strncpy(plname, s, sizeof(plname)-1));

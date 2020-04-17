@@ -475,7 +475,7 @@ X#endif
 Xdev_t	dev;
 X{
 X#ifdef __386BSD__
-X    register unsigned n;
+X    unsigned n;
 X    char *cp;
 X    int error;
 X#endif
@@ -731,7 +731,7 @@ Xstatic void playtone(pitch, value, sustain)
 X/* play tone of proper duration for current rhythm signature */
 Xint	pitch, value, sustain;
 X{
-X    register int	sound, silence, snum = 1, sdenom = 1;
+X    int	sound, silence, snum = 1, sdenom = 1;
 X
 X    /* this weirdness avoids floating-point arithmetic */
 X    for (; sustain; sustain--)
@@ -780,7 +780,7 @@ X				{v = v * 10 + (*++cp - '0'); slen--;}
 X    for (; slen--; cp++)
 X    {
 X	int		sustain, timeval, tempo;
-X	register char	c = toupper(*cp);
+X	char	c = toupper(*cp);
 X
 X#ifdef DEBUG
 X	printf("playstring: %c (%x)\n", c, c);

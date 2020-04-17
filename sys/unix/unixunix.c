@@ -69,7 +69,7 @@ int fd;
 static int
 eraseoldlocks()
 {
-	register int i;
+	int i;
 
 	/* cannot use maxledgerno() here, because we need to find a lock name
 	 * before starting everything (including the dungeon initialization
@@ -89,7 +89,7 @@ eraseoldlocks()
 void
 getlock()
 {
-	register int i = 0, fd, c;
+	int i = 0, fd, c;
 	const char *fq_lock;
 
 #ifdef TTY_GRAPHICS
@@ -191,9 +191,9 @@ gotlock:
 
 void
 regularize(s)	/* normalize file name - we don't like .'s, /'s, spaces */
-register char *s;
+char *s;
 {
-	register char *lp;
+	char *lp;
 
 	while((lp=index(s, '.')) || (lp=index(s, '/')) || (lp=index(s,' ')))
 		*lp = '_';
@@ -238,7 +238,7 @@ unsigned msec;				/* milliseconds */
 int
 dosh()
 {
-	register char *str;
+	char *str;
 	if(child(0)) {
 		if((str = getenv("SHELL")) != (char*)0)
 			(void) execl(str, str, (char *)0);
@@ -256,7 +256,7 @@ int
 child(wt)
 int wt;
 {
-	register int f;
+	int f;
 	suspend_nhwindows((char *)0);	/* also calls end_screen() */
 #ifdef _M_UNIX
 	sco_mapon();

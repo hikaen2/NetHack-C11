@@ -489,7 +489,7 @@ FILE *ofp;
 
 int main()
 {
-    register int i;
+    int i;
     char filename[30];
     FILE *ofp;
 

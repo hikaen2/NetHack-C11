@@ -12,7 +12,7 @@ STATIC_DCL void mdrop_obj(struct monst *,struct obj *,BOOLEAN_P);
 
 STATIC_OVL const char *
 equipname(otmp)
-register struct obj *otmp;
+struct obj *otmp;
 {
 	return (
 #ifdef TOURIST
@@ -39,10 +39,10 @@ somegold()
 
 void
 stealgold(mtmp)
-register struct monst *mtmp;
+struct monst *mtmp;
 {
-	register struct obj *gold = g_at(u.ux, u.uy);
-	register long tmp;
+	struct obj *gold = g_at(u.ux, u.uy);
+	long tmp;
 
 	if (gold && ( !u.ugold || gold->quan > u.ugold || !rn2(5))) {
 	    mtmp->mgold += gold->quan;
@@ -90,7 +90,7 @@ Deals in gold only, as leprechauns don't care for lesser coins.
 */
 struct obj *
 findgold(chain)
-register struct obj *chain;
+struct obj *chain;
 {
         while (chain && chain->otyp != GOLD_PIECE) chain = chain->nobj;
         return chain;
@@ -101,11 +101,11 @@ Steal gold coins only.  Leprechauns don't care for lesser coins.
 */
 void
 stealgold(mtmp)
-register struct monst *mtmp;
+struct monst *mtmp;
 {
-	register struct obj *fgold = g_at(u.ux, u.uy);
-	register struct obj *ygold;
-	register long tmp;
+	struct obj *fgold = g_at(u.ux, u.uy);
+	struct obj *ygold;
+	long tmp;
 
         /* skip lesser coins on the floor */        
         while (fgold && fgold->otyp != GOLD_PIECE) fgold = fgold->nexthere; 
@@ -145,8 +145,8 @@ unsigned int stealmid;		/* monster doing the stealing */
 STATIC_PTR int
 stealarm()
 {
-	register struct monst *mtmp;
-	register struct obj *otmp;
+	struct monst *mtmp;
+	struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 	    if(otmp->o_id == stealoid) {
@@ -431,8 +431,8 @@ gotobj:
 /* Returns 1 if otmp is free'd, 0 otherwise. */
 int
 mpickobj(mtmp,otmp)
-register struct monst *mtmp;
-register struct obj *otmp;
+struct monst *mtmp;
+struct obj *otmp;
 {
     int freed_otmp;
 
@@ -574,12 +574,12 @@ struct monst *mon;
 /* release the objects the creature is carrying */
 void
 relobj(mtmp,show,is_pet)
-register struct monst *mtmp;
-register int show;
+struct monst *mtmp;
+int show;
 boolean is_pet;		/* If true, pet should keep wielded/worn items */
 {
-	register struct obj *otmp;
-	register int omx = mtmp->mx, omy = mtmp->my;
+	struct obj *otmp;
+	int omx = mtmp->mx, omy = mtmp->my;
 	struct obj *keepobj = 0;
 	struct obj *wep = MON_WEP(mtmp);
 	boolean item1 = FALSE, item2 = FALSE;
@@ -617,7 +617,7 @@ boolean is_pet;		/* If true, pet should keep wielded/worn items */
 	}
 #ifndef GOLDOBJ
 	if (mtmp->mgold) {
-		register long g = mtmp->mgold;
+		long g = mtmp->mgold;
 		(void) mkgold(g, omx, omy);
 		if (is_pet && cansee(omx, omy) && flags.verbose)
 			pline("%s drops %ld gold piece%s.", Monnam(mtmp),

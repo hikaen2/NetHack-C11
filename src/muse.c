@@ -253,7 +253,7 @@ boolean
 find_defensive(mtmp)
 struct monst *mtmp;
 {
-	register struct obj *obj = 0;
+	struct obj *obj = 0;
 	struct trap *t;
 	int x=mtmp->mx, y=mtmp->my;
 	boolean stuck = (mtmp == u.ustuck);
@@ -965,7 +965,7 @@ boolean
 find_offensive(mtmp)
 struct monst *mtmp;
 {
-	register struct obj *obj;
+	struct obj *obj;
 	boolean ranged_stuff = lined_up(mtmp);
 	boolean reflection_skip = (Reflecting && rn2(2));
 	struct obj *helmet = which_armor(mtmp, W_ARMH);
@@ -1096,8 +1096,8 @@ struct monst *mtmp;
 STATIC_PTR
 int
 mbhitm(mtmp, otmp)
-register struct monst *mtmp;
-register struct obj *otmp;
+struct monst *mtmp;
+struct obj *otmp;
 {
 	int tmp;
 
@@ -1174,14 +1174,14 @@ register struct obj *otmp;
 STATIC_OVL void
 mbhit(mon,range,fhitm,fhito,obj)
 struct monst *mon;			/* monster shooting the wand */
-register int range;			/* direction and range */
+int range;			/* direction and range */
 int (*fhitm)(MONST_P,OBJ_P);
 int (*fhito)(OBJ_P,OBJ_P);	/* fns called when mon/obj hit */
 struct obj *obj;			/* 2nd arg to fhitm/fhito */
 {
-	register struct monst *mtmp;
-	register struct obj *otmp;
-	register uchar typ;
+	struct monst *mtmp;
+	struct obj *otmp;
+	uchar typ;
 	int ddx, ddy;
 
 	bhitpos.x = mon->mx;
@@ -1219,7 +1219,7 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 		/* modified by GAN to hit all objects */
 		if(fhito){
 		    int hitanything = 0;
-		    register struct obj *next_obj;
+		    struct obj *next_obj;
 
 		    for(otmp = level.objects[bhitpos.x][bhitpos.y];
 							otmp; otmp = next_obj) {
@@ -1318,7 +1318,7 @@ struct monst *mtmp;
 	case MUSE_SCR_EARTH:
 	    {
 		/* TODO: handle steeds */
-	    	register int x, y;
+	    	int x, y;
 		/* don't use monster fields after killing it */
 		boolean confused = (mtmp->mconf ? TRUE : FALSE);
 		int mmx = mtmp->mx, mmy = mtmp->my;
@@ -1348,8 +1348,8 @@ struct monst *mtmp;
 	    	    			(((x == mmx) && (y == mmy)) ?
 	    	    			    !otmp->blessed : !otmp->cursed) &&
 					(x != u.ux || y != u.uy)) {
-			    register struct obj *otmp2;
-			    register struct monst *mtmp2;
+			    struct obj *otmp2;
+			    struct monst *mtmp2;
 
 	    	    	    /* Make the object(s) */
 	    	    	    otmp2 = mksobj(confused ? ROCK : BOULDER,
@@ -1566,7 +1566,7 @@ boolean
 find_misc(mtmp)
 struct monst *mtmp;
 {
-	register struct obj *obj;
+	struct obj *obj;
 	struct permonst *mdat = mtmp->data;
 	int x = mtmp->mx, y = mtmp->my;
 	struct trap *t;
@@ -1709,7 +1709,7 @@ struct monst *mtmp;
 		mquaffmsg(mtmp, otmp);
 		if (otmp->cursed) {
 		    if (Can_rise_up(mtmp->mx, mtmp->my, &u.uz)) {
-			register int tolev = depth(&u.uz)-1;
+			int tolev = depth(&u.uz)-1;
 			d_level tolevel;
 
 			get_level(&tolevel, tolev);

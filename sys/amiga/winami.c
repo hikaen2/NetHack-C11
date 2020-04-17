@@ -472,10 +472,10 @@ amii_askname()
 void
 amii_player_selection()
 {
-    register struct Window *cwin;
-    register struct IntuiMessage *imsg;
-    register int aredone = 0;
-    register struct Gadget *gd;
+    struct Window *cwin;
+    struct IntuiMessage *imsg;
+    int aredone = 0;
+    struct Gadget *gd;
     static int once = 0;
     long class, code;
 
@@ -788,8 +788,8 @@ amii_get_ext_cmd( void )
     int bottom = 0;
     struct Window *w;
     char obufp[ 100 ];
-    register char *bufp = obufp;
-    register int c;
+    char *bufp = obufp;
+    int c;
     int com_index, oindex;
     int did_comp=0;	/* did successful completion? */
     int sel = -1;
@@ -1067,11 +1067,11 @@ char def;
  *   be shown in the prompt to the user but will be acceptable as input.
  */
 {
-	register char q;
+	char q;
 	char rtmp[40];
 	boolean digit_ok, allow_num;
 	char prompt[QBUFSZ];
-	register struct amii_WinDesc *cw;
+	struct amii_WinDesc *cw;
 
 	if( cw = amii_wins[ WIN_MESSAGE ] )
 	    cw->disprows = 0;
@@ -1189,11 +1189,11 @@ amii_display_file(fn, complain)
 const char *fn;
 boolean complain;
 {
-    register struct amii_WinDesc *cw;
-    register int win;
-    register dlb *fp;
-    register char *t;
-    register char buf[ 200 ];
+    struct amii_WinDesc *cw;
+    int win;
+    dlb *fp;
+    char *t;
+    char buf[ 200 ];
 
     if( fn == NULL )
 	panic("NULL file name in display_file()");
@@ -1246,11 +1246,11 @@ boolean complain;
 
 void
 SetBorder( gd )
-    register struct Gadget *gd;
+    struct Gadget *gd;
 {
-    register struct Border *bp;
-    register short *sp;
-    register int i, inc = -1, dec = -1;
+    struct Border *bp;
+    short *sp;
+    int i, inc = -1, dec = -1;
     int borders = 6;
     int hipen = flags.amii_dripens[ SHINEPEN ], shadowpen = flags.amii_dripens[ SHADOWPEN ];
 #ifdef	INTUI_NEW_LOOK
